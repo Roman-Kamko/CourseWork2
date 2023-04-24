@@ -1,0 +1,93 @@
+package edu.skypro.coursework.taskmanager;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+public abstract class Task {
+    private static int idGenerator = 1;
+    private final int id;
+    private Type type;
+    private String title;
+    private LocalDate dateTime;
+    private String description;
+//    Date dateOfCreation;
+
+    public Task(Type type,
+                String title,
+                LocalDate dateTime,
+                String description) {
+        this.type = type;
+        this.title = title;
+        this.dateTime = dateTime;
+        this.description = description;
+//        Date dateOfCreation = new Date();
+        id = idGenerator++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public LocalDate getDateTime() {
+        return dateTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDateTime(LocalDate dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean appearsIn(LocalDate localDate) {  // пока не понял что с этим делать
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id &&
+                type == task.type &&
+                Objects.equals(title, task.title) &&
+                Objects.equals(dateTime, task.dateTime) &&
+                Objects.equals(description, task.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, title, dateTime, description);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID %d, " +
+                        "Тип %s, " +
+                        "Заголовок: %s, " +
+                        "Дата выполнения: %te %<tB %<tY, " +
+                        "Описание: %s%n",
+                id, type, title, dateTime, description);
+    }
+}
