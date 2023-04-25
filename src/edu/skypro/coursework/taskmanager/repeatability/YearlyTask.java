@@ -3,10 +3,15 @@ package edu.skypro.coursework.taskmanager.repeatability;
 import edu.skypro.coursework.taskmanager.Task;
 import edu.skypro.coursework.taskmanager.Type;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class YearlyTask extends Task {
-    public YearlyTask(Type type, String title, LocalDate dateTime, String description) {
+    public YearlyTask(Type type, String title, LocalDateTime dateTime, String description) {
         super(type, title, dateTime, description);
+    }
+
+    @Override
+    public boolean appearsIn(LocalDateTime dateTime) {
+        return false;
     }
 }

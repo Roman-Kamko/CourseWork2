@@ -1,6 +1,6 @@
 package edu.skypro.coursework.taskmanager;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Task {
@@ -8,13 +8,13 @@ public abstract class Task {
     private final int id;
     private Type type;
     private String title;
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
     private String description;
 //    Date dateOfCreation;
 
     public Task(Type type,
                 String title,
-                LocalDate dateTime,
+                LocalDateTime dateTime,
                 String description) {
         this.type = type;
         this.title = title;
@@ -36,7 +36,7 @@ public abstract class Task {
         return title;
     }
 
-    public LocalDate getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
@@ -52,7 +52,7 @@ public abstract class Task {
         this.title = title;
     }
 
-    public void setDateTime(LocalDate dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -60,9 +60,7 @@ public abstract class Task {
         this.description = description;
     }
 
-    public boolean appearsIn(LocalDate localDate) {  // пока не понял что с этим делать
-        return true;
-    }
+    public abstract boolean appearsIn(LocalDateTime dateTime); // пока не понял что с этим делать
 
     @Override
     public boolean equals(Object o) {
@@ -88,6 +86,6 @@ public abstract class Task {
                         "Заголовок: %s, " +
                         "Дата выполнения: %te %<tB %<tY, " +
                         "Описание: %s%n",
-                id, type, title, dateTime, description);
+                id, type.getText(), title, dateTime, description);
     }
 }
