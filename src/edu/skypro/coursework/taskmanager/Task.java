@@ -10,7 +10,7 @@ public abstract class Task {
     private String title;
     private LocalDateTime dateTime;
     private String description;
-//    Date dateOfCreation;
+    private final LocalDateTime dateOfCreation;
 
     public Task(Type type,
                 String title,
@@ -20,7 +20,7 @@ public abstract class Task {
         this.title = title;
         this.dateTime = dateTime;
         this.description = description;
-//        Date dateOfCreation = new Date();
+        this.dateOfCreation = LocalDateTime.now();
         id = idGenerator++;
     }
 
@@ -82,10 +82,11 @@ public abstract class Task {
     @Override
     public String toString() {
         return String.format("ID %d, " +
-                        "Тип %s, " +
+                        "Начало: %tR %<tF, " +
                         "Заголовок: %s, " +
-                        "Дата выполнения: %te %<tB %<tY, " +
-                        "Описание: %s%n",
-                id, type.getText(), title, dateTime, description);
+                        "Описание: %s, " +
+                        "Тип %s. " +
+                        "Дата создания: %tR %<tF%n",
+                        id, dateTime, title, description, type.getText(), dateOfCreation);
     }
 }
